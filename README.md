@@ -49,6 +49,7 @@ CV and Resume
 
 -   Nick Strayer: [repo](https://github.com/nstrayer/cv),
     [site](http://nickstrayer.me/cv/)
+    -   [`datadrivencv`](http://nickstrayer.me/datadrivencv/index.html)
 -   Jodavid Ferreira: [repo](https://github.com/Jodavid/cv),
     [site](https://jodavid.github.io/cv/)
 -   Beatriz Milz: [repo](https://github.com/beatrizmilz/resume),

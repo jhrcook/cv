@@ -85,7 +85,7 @@ Biomedical and Biological Sciences PhD. program
 
 Boston, MA
 
-2017
+present - 2017
 
 Studying cancer genetics with bioinformatics and statistical modeling.
 
@@ -95,119 +95,106 @@ B.S. in Biochemistry and Molecular Biology & B.S. in Chemistry
 
 Irvine, CA
 
-2013 - 2017
+2017 - 2013
 
 *Magna Cum Laude* with a cumulative GPA of 3.94 and Honors in Biology.
 
 Research Experience {data-icon=flask}
 --------------------------------------------------------------------------------
 
-### Graduate Research Assistant
+### Graduate Research
 
-Beijing Institute of Genomics, Chinese Academy of Sciences
+Harvard Medical School
 
-Beijing, China
+Boston, MA
 
-2011 - 2014
+present - 2017
 
-- Performed computational biology research towards understanding regulation of alternative splicing in human and mouse transcriptome.
-- Found EGFR pathway related mutations, aimed to understand the impacts of cancer mutations on EGFR signaling pathway.
+- Studied the tissue- and allele-specific genetic interactions of *KRAS* in cancer using thousands of human tumor samples.
+- Bayesian hierarchical modeling of CRISPR-Cas9 loss-of-function screens.
 
-### Bioinformatican
+### Undergraduate Research
 
-My Health Gene Technology Co., Ltd.
+Dept. of Molecular Biology and Biochemistry, UCI
 
-Beijing, China
+Irvine, CA
 
-2015 - 2016
+2017 - 2014
 
-- Investigated how cancer cells spread to other parts of the body at the single cell level.
+- Investigated the patterns and mechanisms of dissemination by which *Toxoplasma gondii*, an obligate, intracellular parasite, infects a human host.
 
-### Visiting Scientist
+### Research Interneship
 
-University of Alabama at Birmingham
+Saban Research Institute, Los Angeles
 
-AL, USA
-
-2016 - 2018
-
-- Investigated the role of mitochondria in development of cancer.
-- Investigated the evolution of genome architecture and its role in important evolutionary events.
-- Detected thrombotic thrombocytopenic purpura related mutations in mutiple patients' blood genome.
-
-
-Professional Experience {data-icon=suitcase}
---------------------------------------------------------------------------------
-
-### Data Scientist, intern
-
-SupStat Inc.
-
-Beijing, China
+Los Angeles, CA
 
 2014
 
-::: concise
-- Taught R language to beginners.
-- Wrote Shiny app demos.
-- Converted statistical tutorials from SPSS to R language.
-:::
-
-### Bioinformatician
-
-My Health Gene Technology Co., Ltd.
-
-Beijing, China
-
-2015 - 2016
-
-::: concise
-- Analyzed whole-exome sequencing data.
-- Wrote analysis pipelines of ChIP-seq, single cell DNA-seq and single cell RNA-seq.
-- Studied tumor metastasis and wrote research reports.
-- Also did case studies to identify the genetic defect causing rare disease.
-:::
+- Studied the underlying causes of developmental disruptions within the hypothalamus that are characteristic of Prader-Willi syndrome.
 
 
-Teaching Experience {data-icon=chalkboard-teacher}
+### Research Interneship
+
+Saban Research Institute, Los Angeles
+
+Los Angeles, CA
+
+2012
+
+- Researched the role of liver progenitor cells in these two rare, yet deadly, early onset diseases.
+
+
+Publications {data-icon=newspaper}
 --------------------------------------------------------------------------------
 
-### Introduction to R Language for Beginners.
+```{r publications}
+combine_strings <- function(s) {
+  paste(s, collapse = ", ")
+}
 
-Instructor of R and Data Mining Training Courses at SupStat Inc.
+clean_strings <- function(s) {
+  unlist(s) %>% stringr::str_squish() %>% stringr::str_replace_all("\\{|\\}", "*")
+}
 
-Beijing, China
+highlight_me <- function(authors) {
+  ifelse(str_detect(authors, "Joshua"), glue::glue("**{authors}**"), authors)
+}
 
-2014
+format_authors <- function(pub) {
+  as.character(pub$author) %>%
+    unlist() %>%
+    highlight_me() %>%
+    combine_strings() %>%
+    clean_strings()
+}
 
-### Computational Biology and Bioinformatics.
+print_pubs <- function(pub) {
+  glue_template <- "
+  ### {title}
 
-Teaching assistant of GBS CB2-201 courses at UAB
+  *{journal}*
 
-AL, USA
+  N/A
 
-2016 - 2017
+  {year}
+
+  {authors}
+
+  "
+
+  data <- list(
+    title = clean_strings(pub$title),
+    journal = clean_strings(pub$journal),
+    year = pub$year,
+    authors = format_authors(pub)
+  )
+
+  print(glue::glue_data(data, glue_template))
+  return(NULL)
+}
 
 
-Selected Publications and Posters {data-icon=file}
---------------------------------------------------------------------------------
-
-### Genetic and epigenetic signals are found predictive to the distribution of intra-individual divergence of alternative splicing.
-
-Poster for 2013 International Conference of Genomics
-
-Qingdao, China
-
-2014
-
-**Yu L**, Chen B, Zhang Z.
-
-### ESCRT-0 complex modulates Rbf mutant cell survival by regulating Rhomboid endosomal trafficking and EGFR signaling.
-
-J Cell Sci. 2016 May 15;129(10):2075-84.
-
-N/A
-
-2016
-
-Sheng Z, **Yu L**, Zhang T, Pei X, Li X, Zhang Z and Du W.
+pubs <- bibtex::read.bib(here::here("publications.bib"))
+purrr::walk(pubs, print_pubs)
+```
