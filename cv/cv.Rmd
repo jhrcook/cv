@@ -1,0 +1,52 @@
+---
+title: CV
+name: Joshua
+surname: Cook
+position: "Graduate Student"
+address: "Boston, MA"
+phone: (818) 437-7904
+www: www.joshuacook.netlify.app
+email: "josh.hr.cook@gmail.com"
+# twitter: JoshDoesA
+github: jhrcook
+# linkedin: joshua-hr-cook
+date: "`r format(Sys.time(), '%B %Y')`"
+aboutme: "I am a graduate student at Harvard Medical School using Bayesian statistical modeling to study cancer genetics."
+docname: my-cv
+output:
+  vitae::markdowncv:
+    theme: davewhipp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(here)
+library(tidyverse)
+library(vitae)
+```
+
+## Summary
+
+As an undergraduate at UC Irvine, I double-majored in biology and chemistry and researched the interactions between the human immune system and the parasite *Toxoplasma gondii*.
+In graduate school, I have switched to studying cancer biology using computational methods.
+While learning about statistics and mathematical modeling, I was naturally drawn to Bayesian statistical modeling which has since become a passion of mine.
+
+## Education
+
+```{r}
+library(tibble)
+tribble(
+  ~ degree, ~ year, ~ institution, ~ location,
+  "B.S. Biochemistry & Molecular Biology", "2013-2017", "University of California, Irvine", "Irvine, CA",
+  "B.S. Chemistry", "2013-2017", "University of California, Irvine", "Irvine, CA",
+  "Ph.D. Cancer Genetics & Bioinformatics", "2017-present", "Harvard Medical School", "Boston, MA",
+) %>%
+  detailed_entries(what=degree, when=year, with=institution, where=location)
+```
+
+## Publications
+
+```{r publications}
+bibliography_entries(here("publications.bib"))
+```
