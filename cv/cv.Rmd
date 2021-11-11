@@ -1,52 +1,213 @@
 ---
-title: CV
-name: Joshua
-surname: Cook
-position: "Graduate Student"
-address: "Boston, MA"
-phone: (818) 437-7904
-www: www.joshuacook.netlify.app
-email: "josh.hr.cook@gmail.com"
-# twitter: JoshDoesA
-github: jhrcook
-# linkedin: joshua-hr-cook
-date: "`r format(Sys.time(), '%B %Y')`"
-aboutme: "I am a graduate student at Harvard Medical School using Bayesian statistical modeling to study cancer genetics."
-docname: my-cv
+title: "Joshua Cook's CV"
+author: Joshua Cook
+date: "`r Sys.Date()`"
 output:
-  vitae::markdowncv:
-    theme: davewhipp
+  pagedown::html_resume:
+    css: ["cv.css", "resume"]
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+#knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-
-library(here)
+knitr::opts_chunk$set(results = "asis", echo = FALSE, dpi=300)
 library(tidyverse)
-library(vitae)
 ```
 
-## Summary
 
-As an undergraduate at UC Irvine, I double-majored in biology and chemistry and researched the interactions between the human immune system and the parasite *Toxoplasma gondii*.
-In graduate school, I have switched to studying cancer biology using computational methods.
-While learning about statistics and mathematical modeling, I was naturally drawn to Bayesian statistical modeling which has since become a passion of mine.
+Aside
+================================================================================
 
-## Education
+Contact Info {#contact}
+--------------------------------------------------------------------------------
 
-```{r}
-library(tibble)
-tribble(
-  ~ degree, ~ year, ~ institution, ~ location,
-  "B.S. Biochemistry & Molecular Biology", "2013-2017", "University of California, Irvine", "Irvine, CA",
-  "B.S. Chemistry", "2013-2017", "University of California, Irvine", "Irvine, CA",
-  "Ph.D. Cancer Genetics & Bioinformatics", "2017-present", "Harvard Medical School", "Boston, MA",
-) %>%
-  detailed_entries(what=degree, when=year, with=institution, where=location)
-```
+- <i class="far fa-envelope"></i> josh.hr.cook@gmail.com
+- <i class="fab fa-github"></i> [github.com/jhrcook](https://github.com/jhrcook)
+- <i class="fas fa-mobile-alt"></i> (818) 437-7904
+- <i class="fas fa-laptop"></i> [website](https://joshuacook.netlify.app)
 
-## Publications
+Skills {#software}
+--------------------------------------------------------------------------------
 
-```{r publications}
-bibliography_entries(here("publications.bib"))
-```
+<i class="far fa-chart-bar"></i> Bayesian statistical modelling
+
+<i class="fas fa-camera-retro"></i> Data visualization
+
+<i class="fab fa-apple"></i> iOS, macOS, and watchOS app development
+
+Programming Languages {#languages}
+--------------------------------------------------------------------------------
+
+- `r fontawesome::fa("r-project", fill="#1F65B7")` `R`
+- `r fontawesome::fa("python", fill="#3771A2")` `Python`
+- `r fontawesome::fa("swift", fill="#FF392F")` `Swift`
+- `r fontawesome::fa("terminal", fill="black")` `Bash`
+
+<!--
+Software {#software}
+--------------------------------------------------------------------------------
+
+`R` packages for plotting asymmetric heatmaps and managing caching of long running operations.
+
+[![ggasym-logo](https://github.com/jhrcook/ggasym/blob/949d484f89ff25624b7e3c715b3ef7df42dd2523/man/figures/logo.png?raw=true){width=30%}](https://jhrcook.github.io/ggasym/index.html)
+[![mustashe-logo](https://github.com/jhrcook/mustashe/blob/5547b7fd9dc5b719aaf42afef133fdec27a2d721/man/figures/logo.png?raw=true){width=35%}](https://jhrcook.github.io/mustashe/)
+
+`Python` package for querying Boston's 311 non-emergency reporting service.
+
+<i class="fas fa-box-open"></i> [`boston311`](https://jhrcook.github.io/boston311/)
+
+`Swift` package for using the PageRank algorithm for text summarization
+
+<i class="fas fa-box-open"></i> [`textrank`](https://github.com/jhrcook/textrank)
+-->
+
+
+
+Main
+================================================================================
+
+Joshua Cook {#title}
+--------------------------------------------------------------------------------
+
+### Graduent Student Researcher
+
+As an undergrad, I studied the parasite *Toxoplasma gondii*, and I currently study cancer genetics using bioinformatics with a specific focus on Bayesian methods.
+I am looking to once again switch disciplines but continue utilizing and improving my Bayesian statistical analysis skills.
+
+Education {data-icon=graduation-cap}
+--------------------------------------------------------------------------------
+
+### Harvard Medical School
+
+Biomedical and Biological Sciences PhD. program
+
+Boston, MA
+
+2017
+
+Studying cancer genetics with bioinformatics and statistical modeling.
+
+### University of California, Irvine
+
+B.S. in Biochemistry and Molecular Biology & B.S. in Chemistry
+
+Irvine, CA
+
+2013 - 2017
+
+*Magna Cum Laude* with a cumulative GPA of 3.94 and Honors in Biology.
+
+Research Experience {data-icon=flask}
+--------------------------------------------------------------------------------
+
+### Graduate Research Assistant
+
+Beijing Institute of Genomics, Chinese Academy of Sciences
+
+Beijing, China
+
+2011 - 2014
+
+- Performed computational biology research towards understanding regulation of alternative splicing in human and mouse transcriptome.
+- Found EGFR pathway related mutations, aimed to understand the impacts of cancer mutations on EGFR signaling pathway.
+
+### Bioinformatican
+
+My Health Gene Technology Co., Ltd.
+
+Beijing, China
+
+2015 - 2016
+
+- Investigated how cancer cells spread to other parts of the body at the single cell level.
+
+### Visiting Scientist
+
+University of Alabama at Birmingham
+
+AL, USA
+
+2016 - 2018
+
+- Investigated the role of mitochondria in development of cancer.
+- Investigated the evolution of genome architecture and its role in important evolutionary events.
+- Detected thrombotic thrombocytopenic purpura related mutations in mutiple patients' blood genome.
+
+
+Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+### Data Scientist, intern
+
+SupStat Inc.
+
+Beijing, China
+
+2014
+
+::: concise
+- Taught R language to beginners.
+- Wrote Shiny app demos.
+- Converted statistical tutorials from SPSS to R language.
+:::
+
+### Bioinformatician
+
+My Health Gene Technology Co., Ltd.
+
+Beijing, China
+
+2015 - 2016
+
+::: concise
+- Analyzed whole-exome sequencing data.
+- Wrote analysis pipelines of ChIP-seq, single cell DNA-seq and single cell RNA-seq.
+- Studied tumor metastasis and wrote research reports.
+- Also did case studies to identify the genetic defect causing rare disease.
+:::
+
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Introduction to R Language for Beginners.
+
+Instructor of R and Data Mining Training Courses at SupStat Inc.
+
+Beijing, China
+
+2014
+
+### Computational Biology and Bioinformatics.
+
+Teaching assistant of GBS CB2-201 courses at UAB
+
+AL, USA
+
+2016 - 2017
+
+
+Selected Publications and Posters {data-icon=file}
+--------------------------------------------------------------------------------
+
+### Genetic and epigenetic signals are found predictive to the distribution of intra-individual divergence of alternative splicing.
+
+Poster for 2013 International Conference of Genomics
+
+Qingdao, China
+
+2014
+
+**Yu L**, Chen B, Zhang Z.
+
+### ESCRT-0 complex modulates Rbf mutant cell survival by regulating Rhomboid endosomal trafficking and EGFR signaling.
+
+J Cell Sci. 2016 May 15;129(10):2075-84.
+
+N/A
+
+2016
+
+Sheng Z, **Yu L**, Zhang T, Pei X, Li X, Zhang Z and Du W.
