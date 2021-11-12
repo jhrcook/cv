@@ -1,0 +1,7 @@
+title	subtitle	description	url
+ggasym	Plotting asymmetric heatmaps in `R`		https://jhrcook.github.io/ggasym/
+mustashe	Caching and restoring the results of long-running computations in `R`		https://jhrcook.github.io/mustashe/
+boston311	`Python` package for querying Boston's 311 non-emergency reporting service		https://jhrcook.github.io/boston311/
+textrank	`Swift` package for using the PageRank algorithm for text summarization		https://github.com/jhrcook/textrank
+Workout Spinner	An Apple Watch app for randomly selecting an exercise
+Brief	A Mac app for summarizing text

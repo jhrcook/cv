@@ -13,7 +13,27 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(results = "asis", echo = FALSE, dpi=300)
+
+library(glue)
 library(tidyverse)
+
+DATA_DIR <- here::here("data")
+PUBLICATIONS_BIB <- file.path(DATA_DIR, "publications.bib")
+HONORS_AND_AWARDS_FILE <- file.path(DATA_DIR, "honors-awards.tsv")
+PRESENTATIONS_FILE <- file.path(DATA_DIR, "presentations.tsv")
+
+required_files <- c(PUBLICATIONS_BIB, HONORS_AND_AWARDS_FILE)
+
+for (f in required_files) {
+  if (!file.exists(f)) {
+    stop(glue("Cannot find file '{f}'"))
+  }
+}
+
+for (f in list.files(here::here("src"), pattern = ".R$", full.names = TRUE)) {
+  print(f)
+  source(f)
+}
 ```
 
 
@@ -27,6 +47,8 @@ Contact Info {#contact}
 - <i class="fab fa-github"></i> [github.com/jhrcook](https://github.com/jhrcook)
 - <i class="fas fa-mobile-alt"></i> (818) 437-7904
 - <i class="fas fa-laptop"></i> [website](https://joshuacook.netlify.app)
+- `r fontawesome::fa("orcid")` [ORCID: 0000-0001-9815-6879](https://orcid.org/0000-0001-9815-6879)
+
 
 Skills {#software}
 --------------------------------------------------------------------------------
@@ -36,6 +58,7 @@ Skills {#software}
 <i class="fas fa-camera-retro"></i> Data visualization
 
 <i class="fab fa-apple"></i> iOS, macOS, and watchOS app development
+
 
 Programming Languages {#languages}
 --------------------------------------------------------------------------------
@@ -76,6 +99,7 @@ Joshua Cook {#title}
 As an undergrad, I studied the parasite *Toxoplasma gondii*, and I currently study cancer genetics using bioinformatics with a specific focus on Bayesian methods.
 I am looking to once again switch disciplines but continue utilizing and improving my Bayesian statistical analysis skills.
 
+
 Education {data-icon=graduation-cap}
 --------------------------------------------------------------------------------
 
@@ -98,6 +122,7 @@ Irvine, CA
 2017 - 2013
 
 *Magna Cum Laude* with a cumulative GPA of 3.94 and Honors in Biology.
+
 
 Research Experience {data-icon=flask}
 --------------------------------------------------------------------------------
@@ -154,11 +179,11 @@ combine_strings <- function(s) {
 }
 
 clean_strings <- function(s) {
-  unlist(s) %>% stringr::str_squish() %>% stringr::str_replace_all("\\{|\\}", "*")
+  unlist(s) %>% str_squish() %>% str_replace_all("\\{|\\}", "*")
 }
 
 highlight_me <- function(authors) {
-  ifelse(str_detect(authors, "Joshua"), glue::glue("**{authors}**"), authors)
+  ifelse(str_detect(authors, "Joshua"), glue("**{authors}**"), authors)
 }
 
 format_authors <- function(pub) {
@@ -190,11 +215,129 @@ print_pubs <- function(pub) {
     authors = format_authors(pub)
   )
 
-  print(glue::glue_data(data, glue_template))
+  print(glue_data(data, glue_template))
   return(NULL)
 }
 
 
-pubs <- bibtex::read.bib(here::here("publications.bib"))
-purrr::walk(pubs, print_pubs)
+bibtex::read.bib(PUBLICATIONS_BIB) %>%
+  purrr::walk(print_pubs)
+```
+
+Software {data-icon=robot}
+--------------------------------------------------------------------------------
+
+### TODO
+
+TODO
+
+TODO
+
+TODO
+
+TODO
+
+Presentations {data-icon=comments}
+--------------------------------------------------------------------------------
+
+```{r presentations, message=FALSE}
+read_tsv(PRESENTATIONS_FILE) %>%
+  add_column(subtitle=NA, location=NA, body=NA) %>%
+  table_to_section()
+```
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Private Tutoring
+
+N/A
+
+Cambridge, MA
+
+September 2018 - June 2021
+
+I tutored a high school student every evening.
+In any one night, our topics would range from history to physics to computer science.
+Mainly, I ensured that he understood the material and helped him grasp topics he found difficult.
+While I had a good handle on most of the information covered, sometimes his course material stretched well beyond my comfort level (for example, his Mandarin courses).
+When I found myself in these scenarios, I probed his understanding by asking questions and having him teach me the material.
+
+### Teaching Assistant
+
+TODO
+
+TODO
+
+TODO
+
+### Tutor
+
+UCI Learning and Academic Resource Center
+
+Irvine, CA
+
+August 2015 - September 2016
+
+I led group tutoring sessions for undergraduate students as part of the Learning and Academic Resource Center (LARC) at UCI. I have tutored an Introductory Biology course, Biochemistry, Molecular Biology, and Calculus.
+
+
+Leadership and Mentoring {data-icon=walking}
+--------------------------------------------------------------------------------
+
+### Irvine Little League Manager
+
+Little League Baseball
+
+Irvine, CA
+
+February 2016 - June 2016, January 2017 - July 2017
+
+My first year, I co-managed a Majors division (11 - 12 year olds) baseball team in the Irvine Ranch Little League and co-managed the 11 year-old’s All Star Team over the summer. My second season, I managed my own team in the AA division (8-10 year olds). I fulfilled several administrative roles including attending league meetings, organizing parent volunteers, and scheduling practices and games. My goal as a manager of these young boys was to emulate maturity, determination, and level-headedness, especially when under pressure. Excitingly, my AA team was season champion and won the Irvine City Championship Tournament!
+
+### Tutor Advisor
+
+UCI Learning and Academic Resource Center
+
+Irvine, CA
+
+March 2016 - June 2017
+
+I instructed LARC tutors in improving their tutorials and teaching methods. In addition, I spent a lot of time interacting with the tutors to make sure they were managing their course load and job in an efficient and healthy manner. I had an administrative role, as well. In particular, I orchestrated the scheduling and creation of LARC tutorials and handled day-to-day problems that inevitably arose.
+
+
+### Peer Mentor
+
+UCI Campuswide Honors Program
+
+Irvine, CA
+
+August 2016 - June 2017
+
+I assisted four incoming freshmen in acclimating to UC Irvine. I supported them by alerting them to useful resources, answering questions they have about classes, and helping them work through a stressful period in their academic career.
+
+### Peer Scholars Mentor
+
+Scholarship and Opportunities Program (SOP)
+
+Irvine, CA
+
+September 2016 - January 2017
+
+I helped three UCI Barry Goldwater Scholarship applicants prepare their applications. Though the applicants had research experience and strong academic standing, they are inexperienced in drafting national scholarship applications. As I had won the Goldwater Scholarship and applied for the Churchill Scholarship and Fulbright Fellowship, my goal was to guide these students through the process and assist them in crafting a strong application.
+
+
+Honors and Awards {data-icon=award}
+--------------------------------------------------------------------------------
+
+```{r honors-awards, message=FALSE}
+print_honors_and_awards <- function(honors_awards_df) {
+  honors_awards_df %>%
+    rename(title = award, body = info) %>%
+    add_column(subtitle = NA, location=NA) %>%
+    table_to_section()
+}
+
+read_tsv(HONORS_AND_AWARDS_FILE) %>%
+  print_honors_and_awards()
 ```
