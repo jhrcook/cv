@@ -1,7 +1,11 @@
-title	subtitle	description	url
-ggasym	Plotting asymmetric heatmaps in `R`		https://jhrcook.github.io/ggasym/
-mustashe	Caching and restoring the results of long-running computations in `R`		https://jhrcook.github.io/mustashe/
-boston311	`Python` package for querying Boston's 311 non-emergency reporting service		https://jhrcook.github.io/boston311/
-textrank	`Swift` package for using the PageRank algorithm for text summarization		https://github.com/jhrcook/textrank
-Workout Spinner	An Apple Watch app for randomly selecting an exercise
-Brief	A Mac app for summarizing text
+title	subtitle	description	source_url	more_info_url
+ggasym	Plotting asymmetric heatmaps in `R`.	NA	https://github.com/jhrcook/ggasym	https://jhrcook.github.io/ggasym/
+mustashe	Caching and restoring the results of long-running computations in `R`.	NA	https://github.com/jhrcook/mustashe	https://jhrcook.github.io/mustashe/
+boston311	`Python` package for querying Boston's 311 non-emergency reporting service.	NA	https://github.com/jhrcook/boston311	https://jhrcook.github.io/boston311/
+textrank	`Swift` package for using the PageRank algorithm for text summarization.	NA	https://github.com/jhrcook/textrank	NA
+Germinate	An `iOS app` for tracking seedling germination rates.	NA	https://github.com/jhrcook/Germination-Tracker	https://joshuacook.netlify.app/project/ios-germination-tracker/
+WaterMe	An `iOS app` for recording and scheduling when to water plants.	NA	https://github.com/jhrcook/WaterMe	NA
+Plant Tracker	An `iOS app` for keeping track of a plant collection.	NA	https://github.com/jhrcook/PlantTracker	https://joshuacook.netlify.app/project/ios-plant-tracker/
+Workout Spinner	An `Apple Watch` app for randomly selecting an exercise.	NA	NA	NA
+Telemetry Recorder	An `Apple Watch` app that records the watches acceleromter and gyroscope values and saves them a CSV in iCloud.	NA	https://github.com/jhrcook/TelemetryRecorder	NA
+Brief	A `macOS` app for summarizing text.	NA	NA	NA

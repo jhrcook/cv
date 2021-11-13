@@ -12,7 +12,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(results = "asis", echo = FALSE, dpi=300)
+knitr::opts_chunk$set(
+  results = "asis", echo = FALSE, message = FALSE, dpi = 300
+)
 
 library(glue)
 library(tidyverse)
@@ -21,8 +23,11 @@ DATA_DIR <- here::here("data")
 PUBLICATIONS_BIB <- file.path(DATA_DIR, "publications.bib")
 HONORS_AND_AWARDS_FILE <- file.path(DATA_DIR, "honors-awards.tsv")
 PRESENTATIONS_FILE <- file.path(DATA_DIR, "presentations.tsv")
+SOFTWARE_FILE <- file.path(DATA_DIR, "software.tsv")
 
-required_files <- c(PUBLICATIONS_BIB, HONORS_AND_AWARDS_FILE)
+required_files <- c(
+  PUBLICATIONS_BIB, HONORS_AND_AWARDS_FILE, PRESENTATIONS_FILE, SOFTWARE_FILE
+)
 
 for (f in required_files) {
   if (!file.exists(f)) {
@@ -31,7 +36,6 @@ for (f in required_files) {
 }
 
 for (f in list.files(here::here("src"), pattern = ".R$", full.names = TRUE)) {
-  print(f)
   source(f)
 }
 ```
@@ -135,8 +139,8 @@ Boston, MA
 
 present - 2017
 
-- Studied the tissue- and allele-specific genetic interactions of *KRAS* in cancer using thousands of human tumor samples.
-- Bayesian hierarchical modeling of CRISPR-Cas9 loss-of-function screens.
+My first project was to study the tissue- and allele-specific genetic interactions of *KRAS* in cancer using thousands of human tumor samples.
+Currently, I am analyzing CRISPR-Cas9 loss-of-function screens using Bayesian hierarchical models.
 
 ### Undergraduate Research
 
@@ -146,7 +150,7 @@ Irvine, CA
 
 2017 - 2014
 
-- Investigated the patterns and mechanisms of dissemination by which *Toxoplasma gondii*, an obligate, intracellular parasite, infects a human host.
+I investigated the patterns and mechanisms of dissemination by which *Toxoplasma gondii*, an obligate, intracellular parasite, infects a human host.
 
 ### Research Interneship
 
@@ -156,7 +160,7 @@ Los Angeles, CA
 
 2014
 
-- Studied the underlying causes of developmental disruptions within the hypothalamus that are characteristic of Prader-Willi syndrome.
+I studied the underlying causes of developmental disruptions within the hypothalamus that are characteristic of Prader-Willi syndrome.
 
 
 ### Research Interneship
@@ -167,7 +171,7 @@ Los Angeles, CA
 
 2012
 
-- Researched the role of liver progenitor cells in these two rare, yet deadly, early onset diseases.
+I researched the role of liver progenitor cells in Alagille syndrome and biliary atresia, two rare, yet deadly, early-onset liver diseases.
 
 
 Publications {data-icon=newspaper}
@@ -178,8 +182,15 @@ combine_strings <- function(s) {
   paste(s, collapse = ", ")
 }
 
+specific_title_changes <- function(s) {
+  s %>%
+    str_replace("\\$\\\\beta\\$", "β")
+}
+
 clean_strings <- function(s) {
-  unlist(s) %>% str_squish() %>% str_replace_all("\\{|\\}", "*")
+  unlist(s) %>%
+    str_squish() %>%
+    str_replace_all("\\{|\\}", "*")
 }
 
 highlight_me <- function(authors) {
@@ -209,7 +220,7 @@ print_pubs <- function(pub) {
   "
 
   data <- list(
-    title = clean_strings(pub$title),
+    title = clean_strings(pub$title) %>% specific_title_changes(),
     journal = clean_strings(pub$journal),
     year = pub$year,
     authors = format_authors(pub)
@@ -224,25 +235,79 @@ bibtex::read.bib(PUBLICATIONS_BIB) %>%
   purrr::walk(print_pubs)
 ```
 
+::: aside
+
+#### <i class="far fa-chart-bar"></i> Bayesian data analysis portfolio
+
+[Here](https://joshuacook.netlify.app/project/bayesian-data-analysis/) is a collection of Bayesian data analyses I have done for my graduate research and personal projects.
+
+#### <i class="fas fa-camera-retro"></i> Data visualization examples
+
+You can peruse some of my data visualizations and analyses in my `TidyTuesday` [repository](https://github.com/jhrcook/tidy-tuesday).
+
+:::
+
+
 Software {data-icon=robot}
 --------------------------------------------------------------------------------
 
-### TODO
+```{r}
+software_fa <- function(name) {
+  fontawesome::fa(
+    name,
+    fill = "black",
+    fill_opacity = 0.5,
+    height = "0.8em",
+    width = "0.8em"
+  )
+}
 
-TODO
+fa_github <- software_fa("github-alt")
+fa_info <- software_fa("info-circle")
 
-TODO
+add_url_to_software_title <- function(title, url, icon) {
+  if (!is.na(url)) {
+    new_title <- glue("{title} [{icon}]({url})")
+    return(new_title)
+  }
+  return(title)
+}
 
-TODO
+software_tbl <- read_tsv(SOFTWARE_FILE) %>%
+  add_column(location = NA, date = NA) %>%
+  mutate(
+    title = map2_chr(title, source_url, add_url_to_software_title, icon=fa_github),
+    title = map2_chr(title, more_info_url, add_url_to_software_title, icon=fa_info)
+  ) %>%
+  rename(body = description)
 
-TODO
+split_i <- 6
+software_tbl %>%
+  slice(1:split_i) %>%
+  table_to_section()
+```
+
+::: aside
+
+For BMI 707 *Deep Learning for Biomedical Data*, my group trained a [Generative Adversarial Network](https://en.wikipedia.org/wiki/Generative_adversarial_network) to produce high-resolution, realistic hand X-rays and then analyzed the latent space to control the age of the generated hand.
+
+Examine the result in our [**report**](https://joshuacook.netlify.app/project/hand-radiograph-gan/) and watch this [**video**](https://www.youtube.com/watch?v=QpChTgTsY1k) of us controlling the GAN to make aging hand radiographs.
+
+:::
+
+```{r}
+software_tbl %>%
+  slice((split_i+1):n()) %>%
+  table_to_section()
+```
+
 
 Presentations {data-icon=comments}
 --------------------------------------------------------------------------------
 
 ```{r presentations, message=FALSE}
 read_tsv(PRESENTATIONS_FILE) %>%
-  add_column(subtitle=NA, location=NA, body=NA) %>%
+  add_column(subtitle = NA, location = NA, body = NA) %>%
   table_to_section()
 ```
 
@@ -255,21 +320,22 @@ N/A
 
 Cambridge, MA
 
-September 2018 - June 2021
+Sept 2018 - June 2021
 
-I tutored a high school student every evening.
-In any one night, our topics would range from history to physics to computer science.
-Mainly, I ensured that he understood the material and helped him grasp topics he found difficult.
-While I had a good handle on most of the information covered, sometimes his course material stretched well beyond my comfort level (for example, his Mandarin courses).
-When I found myself in these scenarios, I probed his understanding by asking questions and having him teach me the material.
+- Tutored a high school student every evening in a variety of topics
+- Ensured that assignments were completed and submitted in time
 
-### Teaching Assistant
+### Teaching Assistant for BMI 713 *Computing Skills for Biomedical Sciences*
 
-TODO
+Department of Biomedical Informatics, Harvard Medical School
 
-TODO
+Boston, MA
 
-TODO
+Aug 2019 - Nov 2019
+
+- Assisted with instruction during lectures and helped students during periods of interactive group work
+- Held weekly office hours and occasionally 1-on-1 tutoring sessions
+- Created and graded problem sets
 
 ### Tutor
 
@@ -277,9 +343,10 @@ UCI Learning and Academic Resource Center
 
 Irvine, CA
 
-August 2015 - September 2016
+Aug 2015 - Sept 2016
 
-I led group tutoring sessions for undergraduate students as part of the Learning and Academic Resource Center (LARC) at UCI. I have tutored an Introductory Biology course, Biochemistry, Molecular Biology, and Calculus.
+- Organized and led group tutoring sessions for undergraduate students
+- Tutored for courses in introductory biology, biochemistry, molecular biology, and calculus
 
 
 Leadership and Mentoring {data-icon=walking}
@@ -291,19 +358,24 @@ Little League Baseball
 
 Irvine, CA
 
-February 2016 - June 2016, January 2017 - July 2017
+Feb 2016 - June 2016, Jan 2017 - July 2017
 
-My first year, I co-managed a Majors division (11 - 12 year olds) baseball team in the Irvine Ranch Little League and co-managed the 11 year-old’s All Star Team over the summer. My second season, I managed my own team in the AA division (8-10 year olds). I fulfilled several administrative roles including attending league meetings, organizing parent volunteers, and scheduling practices and games. My goal as a manager of these young boys was to emulate maturity, determination, and level-headedness, especially when under pressure. Excitingly, my AA team was season champion and won the Irvine City Championship Tournament!
+- Co-managed a Majors division (11-12 year-olds) baseball team
+- Co-managed the 11 year-old’s All Star Team over the summer
+- Managed my own team in the AA division (8-10 year-olds); season champions and won the Irvine City Championship Tournament
+- Attended league meetings, organized parent volunteers, and scheduled practices and games
 
 ### Tutor Advisor
 
-UCI Learning and Academic Resource Center
+UCI Learning and Academic Resource Center (LARC)
 
 Irvine, CA
 
-March 2016 - June 2017
+Mar 2016 - June 2017
 
-I instructed LARC tutors in improving their tutorials and teaching methods. In addition, I spent a lot of time interacting with the tutors to make sure they were managing their course load and job in an efficient and healthy manner. I had an administrative role, as well. In particular, I orchestrated the scheduling and creation of LARC tutorials and handled day-to-day problems that inevitably arose.
+- Trained other LARC tutors
+- Met with tutors to make sure they were managing their course load and job in an efficient and healthy manner
+- Scheduled LARC tutorials and handled day-to-day problems
 
 
 ### Peer Mentor
@@ -312,19 +384,20 @@ UCI Campuswide Honors Program
 
 Irvine, CA
 
-August 2016 - June 2017
+Aug 2016 - June 2017
 
-I assisted four incoming freshmen in acclimating to UC Irvine. I supported them by alerting them to useful resources, answering questions they have about classes, and helping them work through a stressful period in their academic career.
+- Assisted and supported four incoming UC Irvine freshman
+- Notified them of useful resources, answered questions they had about classes, and helped them work through the stress of beginning their undergraduate studies
 
 ### Peer Scholars Mentor
 
-Scholarship and Opportunities Program (SOP)
+Scholarship and Opportunities Program
 
 Irvine, CA
 
-September 2016 - January 2017
+Sept 2016 - Jan 2017
 
-I helped three UCI Barry Goldwater Scholarship applicants prepare their applications. Though the applicants had research experience and strong academic standing, they are inexperienced in drafting national scholarship applications. As I had won the Goldwater Scholarship and applied for the Churchill Scholarship and Fulbright Fellowship, my goal was to guide these students through the process and assist them in crafting a strong application.
+- Helped three UCI students apply for the Barry Goldwater Scholarship
 
 
 Honors and Awards {data-icon=award}
@@ -334,7 +407,7 @@ Honors and Awards {data-icon=award}
 print_honors_and_awards <- function(honors_awards_df) {
   honors_awards_df %>%
     rename(title = award, body = info) %>%
-    add_column(subtitle = NA, location=NA) %>%
+    add_column(subtitle = NA, location = NA) %>%
     table_to_section()
 }
 

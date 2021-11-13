@@ -1,6 +1,6 @@
 @page{
   size: letter portrait;
-  margin: 1in 0.5in 1in 0.25in;
+  margin: 1in 0in 1in 0in;
 }
 
 *{
@@ -9,8 +9,8 @@
 
 :root{
   --page-width: 8.5in;
-  --margin-right: 0.5in;
-  --margin-left: 0.25in;
+  --margin-right: 0in;
+  --margin-left: 0in;
   --content-width: calc(var(--page-width) - var(--margin-right) - var(--margin-left));
   --root-font-size: 12pt;
   --sidebar-width: 15rem;
@@ -22,13 +22,13 @@
 
   /* XXX: using px for very good precision control */
   --decorator-outer-offset-top: 10px;
-  --decorator-outer-offset-left: -5.5px;
+  --decorator-outer-offset-left: -5px;
   --decorator-border-width: 1px;
   --decorator-outer-dim: 9px;
   --decorator-border: 1px solid #ccc;
 
   --row-blocks-padding-top: 0.5rem;
-  --date-block-width: 0.7in;
+  --date-block-width: 0.6in;
 
   --main-blocks-title-icon-offset-left: calc(-17pt - 0.25 * var(--root-font-size));
 
@@ -276,6 +276,11 @@ h1, h2{
   font-size: 0.8rem;
 }
 
+#presentations .details h3{
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
 .main-block:not(.concise) .details div{
   margin: 0.18in 0 0.1in 0;
 }
@@ -357,8 +362,8 @@ h1, h2{
   margin-top: 0.5in;
 }
 
-#contact a:link{
-  color: #DE0031;
+#contact a[href]{
+  color: #444;
 }
 
 #contact, #languages ul{
@@ -427,5 +432,9 @@ h2 {
 }
 
 .fa-newspaper {
+  margin-left: -3px;
+}
+
+.fa-robot {
   margin-left: -3px;
 }
