@@ -81,11 +81,9 @@ Disclaimer {#disclaimer}
 
 ```{r}
 if(!params$pdf_mode) {
-  cat("<i class='fas fa-download'></i> [Download this CV as a PDF](https://github.com/dioijv).")
+  cat("<i class='fas fa-download'></i> [Download this CV as a PDF](https://github.com/jhrcook/cv/raw/master/cv/cv.pdf).")
 }
 ```
-
-(Still need to add a link to the actual file...)
 
 
 

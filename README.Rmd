@@ -7,9 +7,9 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE, dpi=300, comment = "#>")
 ```
 
-[**Josh Cook's Curriculum Vitae**]()
+[**Josh Cook's Curriculum Vitae**](https://jhrcook.github.io/cv)
 
-<i class='fas fa-download'></i> [Download my CV as a PDF](https://github.com/jhrcook/cv/cv.pdf)
+<i class='fas fa-download'></i> [Download my CV as a PDF](https://github.com/jhrcook/cv/raw/master/cv/cv.pdf)
 
 ---
 
