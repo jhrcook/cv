@@ -7,6 +7,12 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE, dpi=300, comment = "#>")
 ```
 
+[**Josh Cook's Curriculum Vitae**]()
+
+<i class='fas fa-download'></i> [Download my CV as a PDF](https://github.com/jhrcook/cv/cv.pdf)
+
+---
+
 ## Notes
 
 - difference between a CV and resume:
@@ -18,6 +24,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi=300, comment = "#>")
     - a longer academic account
     - includes all your experience, publications, etc.
     - CV is more common for academia position
+
 
 ## Document sections
 
@@ -38,6 +45,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi=300, comment = "#>")
 - publications
 - presentations
 - personal projects
+
 
 ## Resources
 

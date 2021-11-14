@@ -1,6 +1,13 @@
 CV and Resume
 ================
 
+[**Josh Cook’s Curriculum Vitae**]()
+
+<i class='fas fa-download'></i> [Download my CV as a
+PDF](https://github.com/dioijv)
+
+------------------------------------------------------------------------
+
 ## Notes
 
 -   difference between a CV and resume:

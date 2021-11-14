@@ -11,7 +11,7 @@ output:
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
-knit: pagedown::chrome_print
+# knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}
@@ -53,7 +53,7 @@ Contact Info {#contact}
 - <i class="far fa-envelope"></i> josh.hr.cook@gmail.com
 - <i class="fab fa-github"></i> [github.com/jhrcook](https://github.com/jhrcook)
 - <i class="fas fa-mobile-alt"></i> (818) 437-7904
-- <i class="fas fa-laptop"></i> [website](https://joshuacook.netlify.app)
+- <i class="fas fa-laptop"></i> [joshuacook.netlify.app](https://joshuacook.netlify.app)
 - <i>`r fontawesome::fa("orcid")`</i> [ORCID: 0000-0001-9815-6879](https://orcid.org/0000-0001-9815-6879)
 
 
