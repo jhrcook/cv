@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+
 @page{
   size: letter portrait;
   margin: 1in 0in 1in 0in;
@@ -7,14 +10,18 @@
   box-sizing: border-box;
 }
 
+
 :root{
+  --dark-blue: #003b75;
+  --primary-blue: #1878cc;
+
   --page-width: 8.5in;
   --margin-right: 0in;
   --margin-left: 0in;
   --content-width: calc(var(--page-width) - var(--margin-right) - var(--margin-left));
   --root-font-size: 12pt;
   --sidebar-width: 15rem;
-  --sidebar-background-color: #f2f2f2;
+  --sidebar-background-color: #ebedf0;
   --main-width: calc(var(--content-width) - var(--sidebar-width));
   --decorator-horizontal-margin: 0.2in;
 
@@ -52,16 +59,21 @@ html {
 
 body{
   width: var(--content-width);
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-weight: 300;
   line-height: 1.3;
   color: #444;
   hyphens: auto;
 }
 
-h1, h2, h3{
+h1, h3{
   margin: 0;
   color: #000;
+}
+
+h2 {
+  margin: 0;
+  color: var(--primary-blue);
 }
 
 #main > h1, #aside > h1, #disclaimer > h2 {
@@ -108,6 +120,10 @@ h1, h2{
   text-transform: uppercase;
 }
 
+h1 {
+  color: var(--dark-blue);
+}
+
 #title{
   position: relative;
   left: 0.55in;
@@ -139,7 +155,7 @@ h1, h2{
   left: calc((var(--date-block-width) + var(--decorator-horizontal-margin)));
   font-weight: 400;
   font-size: 1.1rem;
-  color: #555;
+  color: var(--primary-blue);
 }
 
 #main h2 > i{
@@ -149,7 +165,7 @@ h1, h2{
   position: absolute;
   left: var(--main-blocks-title-icon-offset-left);
   z-index: 1; /* over decorator line */
-  color: #444;
+  color: var(--dark-blue) /*#444;*/
 }
 
 #main h2::after{ /* extends the decorator line */
@@ -277,7 +293,12 @@ h1, h2{
 }
 
 #presentations .details h3{
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+}
+
+#honors-and-awards .details h3{
+  font-size: 0.7rem;
   font-weight: 300;
 }
 
@@ -353,6 +374,10 @@ h1, h2{
 
 /* sidebar */
 
+.aside i{
+  color: var(--dark-blue);
+}
+
 .aside h2{
   font-weight: 400;
   font-size: 1.1rem;
@@ -427,6 +452,30 @@ h2 {
 }
 
 
+#disclaimer{
+  position: absolute;
+  bottom: 0;
+  right: var(--sidebar-horizontal-padding);
+  font-size: 0.75rem;
+  font-style: normal;
+  line-height: 1.1;
+  text-align: center;
+  color: #616161; /*#777;*/
+}
+
+#disclaimer a[href]{
+  color: #616161;
+}
+
+#disclaimer code{
+  color: #666;
+  font-family: "Source Code Pro";
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* my stuff */
+
 .fa-mobile-alt {
   margin-left: -3px;
 }
@@ -437,4 +486,8 @@ h2 {
 
 .fa-robot {
   margin-left: -3px;
+}
+
+.fa-award {
+  margin-left: 2px;
 }

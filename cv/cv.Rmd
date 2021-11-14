@@ -2,13 +2,16 @@
 title: "Joshua Cook's CV"
 author: Joshua Cook
 date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: false
 output:
   pagedown::html_resume:
     css: ["cv.css", "resume"]
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
-#knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}
@@ -51,7 +54,7 @@ Contact Info {#contact}
 - <i class="fab fa-github"></i> [github.com/jhrcook](https://github.com/jhrcook)
 - <i class="fas fa-mobile-alt"></i> (818) 437-7904
 - <i class="fas fa-laptop"></i> [website](https://joshuacook.netlify.app)
-- `r fontawesome::fa("orcid")` [ORCID: 0000-0001-9815-6879](https://orcid.org/0000-0001-9815-6879)
+- <i>`r fontawesome::fa("orcid")`</i> [ORCID: 0000-0001-9815-6879](https://orcid.org/0000-0001-9815-6879)
 
 
 Skills {#software}
@@ -67,28 +70,22 @@ Skills {#software}
 Programming Languages {#languages}
 --------------------------------------------------------------------------------
 
-- `r fontawesome::fa("r-project", fill="#1F65B7")` `R`
-- `r fontawesome::fa("python", fill="#3771A2")` `Python`
-- `r fontawesome::fa("swift", fill="#FF392F")` `Swift`
-- `r fontawesome::fa("terminal", fill="black")` `Bash`
+- `r fontawesome::fa("r-project", fill="#1F65B7")` R
+- `r fontawesome::fa("python", fill="#3771A2")` Python
+- `r fontawesome::fa("swift", fill="#FF392F")` Swift
+- `r fontawesome::fa("terminal", fill="black")` Bash
 
-<!--
-Software {#software}
+
+Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-`R` packages for plotting asymmetric heatmaps and managing caching of long running operations.
+```{r}
+if(!params$pdf_mode) {
+  cat("<i class='fas fa-download'></i> [Download this CV as a PDF](https://github.com/dioijv).")
+}
+```
 
-[![ggasym-logo](https://github.com/jhrcook/ggasym/blob/949d484f89ff25624b7e3c715b3ef7df42dd2523/man/figures/logo.png?raw=true){width=30%}](https://jhrcook.github.io/ggasym/index.html)
-[![mustashe-logo](https://github.com/jhrcook/mustashe/blob/5547b7fd9dc5b719aaf42afef133fdec27a2d721/man/figures/logo.png?raw=true){width=35%}](https://jhrcook.github.io/mustashe/)
-
-`Python` package for querying Boston's 311 non-emergency reporting service.
-
-<i class="fas fa-box-open"></i> [`boston311`](https://jhrcook.github.io/boston311/)
-
-`Swift` package for using the PageRank algorithm for text summarization
-
-<i class="fas fa-box-open"></i> [`textrank`](https://github.com/jhrcook/textrank)
--->
+(Still need to add a link to the actual file...)
 
 
 
@@ -178,59 +175,6 @@ Publications {data-icon=newspaper}
 --------------------------------------------------------------------------------
 
 ```{r publications}
-combine_strings <- function(s) {
-  paste(s, collapse = ", ")
-}
-
-specific_title_changes <- function(s) {
-  s %>%
-    str_replace("\\$\\\\beta\\$", "β")
-}
-
-clean_strings <- function(s) {
-  unlist(s) %>%
-    str_squish() %>%
-    str_replace_all("\\{|\\}", "*")
-}
-
-highlight_me <- function(authors) {
-  ifelse(str_detect(authors, "Joshua"), glue("**{authors}**"), authors)
-}
-
-format_authors <- function(pub) {
-  as.character(pub$author) %>%
-    unlist() %>%
-    highlight_me() %>%
-    combine_strings() %>%
-    clean_strings()
-}
-
-print_pubs <- function(pub) {
-  glue_template <- "
-  ### {title}
-
-  *{journal}*
-
-  N/A
-
-  {year}
-
-  {authors}
-
-  "
-
-  data <- list(
-    title = clean_strings(pub$title) %>% specific_title_changes(),
-    journal = clean_strings(pub$journal),
-    year = pub$year,
-    authors = format_authors(pub)
-  )
-
-  print(glue_data(data, glue_template))
-  return(NULL)
-}
-
-
 bibtex::read.bib(PUBLICATIONS_BIB) %>%
   purrr::walk(print_pubs)
 ```
@@ -239,7 +183,7 @@ bibtex::read.bib(PUBLICATIONS_BIB) %>%
 
 #### <i class="far fa-chart-bar"></i> Bayesian data analysis portfolio
 
-[Here](https://joshuacook.netlify.app/project/bayesian-data-analysis/) is a collection of Bayesian data analyses I have done for my graduate research and personal projects.
+Here is a [collection of Bayesian data analyses](https://joshuacook.netlify.app/project/bayesian-data-analysis/) I have done for my graduate research and personal projects.
 
 #### <i class="fas fa-camera-retro"></i> Data visualization examples
 
@@ -291,7 +235,7 @@ software_tbl %>%
 
 For BMI 707 *Deep Learning for Biomedical Data*, my group trained a [Generative Adversarial Network](https://en.wikipedia.org/wiki/Generative_adversarial_network) to produce high-resolution, realistic hand X-rays and then analyzed the latent space to control the age of the generated hand.
 
-Examine the result in our [**report**](https://joshuacook.netlify.app/project/hand-radiograph-gan/) and watch this [**video**](https://www.youtube.com/watch?v=QpChTgTsY1k) of us controlling the GAN to make aging hand radiographs.
+Examine the result in our [report](https://joshuacook.netlify.app/project/hand-radiograph-gan/) and watch this [video](https://www.youtube.com/watch?v=QpChTgTsY1k) of us controlling the GAN to make aging hand radiographs.
 
 :::
 
