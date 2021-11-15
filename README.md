@@ -4,7 +4,7 @@ CV and Resume
 [**Josh Cook’s Curriculum Vitae**](https://jhrcook.github.io/cv)
 
 <i class='fas fa-download'></i> [Download my CV as a
-PDF](https://github.com/jhrcook/cv/raw/master/cv/cv.pdf)
+PDF](https://github.com/jhrcook/cv/raw/master/cv/Joshua-Cook-CV.pdf)
 
 ------------------------------------------------------------------------
 

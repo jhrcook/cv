@@ -81,7 +81,7 @@ Disclaimer {#disclaimer}
 
 ```{r}
 if(!params$pdf_mode) {
-  cat("<i class='fas fa-download'></i> [Download this CV as a PDF](https://github.com/jhrcook/cv/raw/master/cv/cv.pdf).")
+  cat("<i class='fas fa-download'></i> [Download this CV as a PDF](https://github.com/jhrcook/cv/raw/master/cv/Joshua-Cook-CV.pdf).")
 }
 ```
 
